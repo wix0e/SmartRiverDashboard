@@ -3249,3 +3249,36 @@ document.addEventListener("click", async (event) => {
 });
 
 initializePollutionMap();
+
+// ================================
+// 모바일 햄버거 메뉴
+// ================================
+
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mobileNav = document.querySelector(".sidebar nav");
+
+if (mobileMenuBtn && mobileNav) {
+
+    mobileMenuBtn.addEventListener("click", () => {
+
+        mobileNav.classList.toggle("mobile-open");
+
+        if (mobileNav.classList.contains("mobile-open")) {
+            mobileMenuBtn.textContent = "✕ 메뉴 닫기";
+        } else {
+            mobileMenuBtn.textContent = "☰ 메뉴";
+        }
+    });
+
+    // 메뉴 선택 후 자동으로 닫기
+    mobileNav.querySelectorAll("a").forEach(menu => {
+
+        menu.addEventListener("click", () => {
+
+            if (window.innerWidth <= 768) {
+                mobileNav.classList.remove("mobile-open");
+                mobileMenuBtn.textContent = "☰ 메뉴";
+            }
+        });
+    });
+}
